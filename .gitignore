@@ -1,7 +1,8 @@
 .DS_Store
 *.asv
 *~
-report/
+report/*
 
-!report/report.pdf
+!report/*.pdf
+
 
