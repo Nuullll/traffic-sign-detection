@@ -148,6 +148,7 @@ w = rescale(w);
 figure;
 montage(w);
 
+
 %% Validate network on test images
 YTest = classify(cifar10Net, testImages);
 

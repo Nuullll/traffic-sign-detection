@@ -14,3 +14,7 @@
 % (traffic sign detection).
 % Transfer learning reduces the number of the required training images 
 % and the time of the training process.
+
+
+% Train R-CNN on CIFAR-10
+train_rcnn_on_CIFAR10;
