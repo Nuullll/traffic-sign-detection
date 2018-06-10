@@ -6,6 +6,6 @@ report/*
 !report/*.pdf
 
 # ignoring dataset
-*/CIFAR-10/*
+**/CIFAR-10/
 
 
