@@ -129,7 +129,7 @@ options = trainingOptions('sgdm', ...
 cifar10Net = trainNetwork(trainingImages, trainingLabels, layers, options);
 
 % save network model
-save('rcnn-cifar10.mat',cifar10Net);
+save('rcnn-cifar10.mat','cifar10Net');
 
 
 
