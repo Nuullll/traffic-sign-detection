@@ -1,5 +1,5 @@
 % traffic sign detection using R-CNN
-% https://www.mathworks.com/help/vision/examples/object-detection-using-deep-learning.html#d119e1338
+% https://www.mathworks.com/help/vision/examples/object-detection-using-deep-learning.html
 % 
 % R-CNN is an object detection framework,
 % which uses a CNN to classify image REGIONS within an image,
