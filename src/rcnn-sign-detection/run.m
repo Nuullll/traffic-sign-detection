@@ -17,4 +17,4 @@
 
 
 % Train R-CNN on CIFAR-10
-train_rcnn_on_CIFAR10;
+train_cnn_on_CIFAR10;
