@@ -138,8 +138,7 @@ else
 end
 
 
-%% Validate trained network
-% visualize trained convolution kernels
+%% Visualize trained convolution kernels
 % Extract the first convolutional layer weights
 w = cifar10Net.Layers(2).Weights;
 
@@ -149,4 +148,8 @@ w = rescale(w);
 figure;
 montage(w);
 
+%% Validate network on test images
+YTest = classify(cifar10Net, testImages);
 
+% Calculate the accuracy.
+accuracy = sum(YTest == testLabels)/numel(testLabels);
