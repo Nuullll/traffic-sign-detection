@@ -5,10 +5,43 @@ gtsdbDir = fullfile(pwd, 'Origin\');
 gtsdbData = loadGTSDB2Table(gtsdbDir);
 nDataset = size(gtsdbData, 1);  % =1213 (some images may contain several ROI labels)
 
+% extract by category
+data = {};      % save data by categories
+categoryList = gtsdbData.Properties.VariableNames(2:end);
+nCategories = length(categoryList);
 
-%% Choose part of GTSDB dataset as training set
-nTrainset = 100;
-trainData = gtsdbData(randsample(nDataset, nTrainset), :);
+for i = 1:nCategories
+    categoryName = categoryList{i};
+    
+    [roi, ind] = extractByCategory(gtsdbData, categoryName);
+    
+    data.(categoryName).roi = roi;
+    data.(categoryName).ind = ind;
+    data.(categoryName).count = length(ind);
+end
+
+
+%% Generate training set and test set
+trainingSetRatio = 0.3;     % pick a part of whole dataset to train R-CNN
+
+trainingIndByCategory = {};
+trainingInd = [];   % all slices for training
+
+for i = 1:nCategories
+    categoryName = categoryList{i};
+    
+    count = data.(categoryName).count;
+    randI = randsample(count, floor(trainingSetRatio * count));
+    
+    trainingIndByCategory.(categoryName) = randI;
+    trainingInd = [trainingInd; randI];
+end
+
+trainingSet = gtsdbData(trainingInd, :);
+
+% the rest part of the whole dataset is regarded as the test set
+testInd = setdiff(1:nDataset, trainingInd);
+testSet = gtsdbData(testInd, :);
 
 
 %% Train R-CNN Traffic Sign Detector
@@ -24,8 +57,8 @@ if doTraining
         'MaxEpochs', 100, ...
         'Verbose', true);
     
-    rcnn = trainRCNNObjectDetector(trainData, cifar10Net, options, ...
-        'NegativeOverlapRange', [0 0.3], 'PositiveOverlapRange', [0.5 1]);
+    rcnn = trainRCNNObjectDetector(trainingSet, cifar10Net, options, ...
+        'NegativeOverlapRange', [0 0.6], 'PositiveOverlapRange', [0.7 1]);
     
     save('rcnn-gtsdb.mat', 'rcnn');
 else
