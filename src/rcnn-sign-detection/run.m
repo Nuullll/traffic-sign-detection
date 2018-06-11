@@ -16,5 +16,5 @@
 % and the time of the training process.
 
 
-% Train R-CNN on CIFAR-10
+% Train CNN on CIFAR-10
 train_cnn_on_CIFAR10;
