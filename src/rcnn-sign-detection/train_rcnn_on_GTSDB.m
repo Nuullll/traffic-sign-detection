@@ -22,7 +22,7 @@ end
 
 
 %% Generate training set and test set
-trainingSetRatio = 0.3;     % pick a part of whole dataset to train R-CNN
+trainingSetRatio = 0.8;     % pick a part of whole dataset to train R-CNN
 
 trainingIndByCategory = {};
 trainingInd = [];   % all slices for training
@@ -33,8 +33,9 @@ for i = 1:nCategories
     count = data.(categoryName).count;
     randI = randsample(count, floor(trainingSetRatio * count));
     
-    trainingIndByCategory.(categoryName) = randI;
-    trainingInd = [trainingInd; randI];
+    ind = data.(categoryName).ind(randI);
+    trainingIndByCategory.(categoryName) = ind;
+    trainingInd = [trainingInd; ind];
 end
 
 trainingSet = gtsdbData(trainingInd, :);
@@ -53,12 +54,12 @@ if doTraining
         'InitialLearnRate', 1e-3, ...
         'LearnRateSchedule', 'piecewise', ...
         'LearnRateDropFactor', 0.1, ...
-        'LearnRateDropPeriod', 100, ...
+        'LearnRateDropPeriod', 10, ...
         'MaxEpochs', 100, ...
         'Verbose', true);
     
     rcnn = trainRCNNObjectDetector(trainingSet, cifar10Net, options, ...
-        'NegativeOverlapRange', [0 0.6], 'PositiveOverlapRange', [0.7 1]);
+        'NegativeOverlapRange', [0 0.3], 'PositiveOverlapRange', [0.7 1]);
     
     save('rcnn-gtsdb.mat', 'rcnn');
 else
