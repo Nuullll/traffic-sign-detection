@@ -133,6 +133,11 @@ if doTraining
 
     % save network model
     save('cnn-cifar10.mat','cifar10Net');
+    % In case of running scripts on different machines (e.g. do intensive
+    % training on the server and do other stuff on personal laptop), please
+    % make sure the Matlab version of both sides are the same. Otherwise
+    % the interface changes in different versions of Neural Network Toolbox
+    % may cause error while loading the pre-saved network.
 else
     load('cnn-cifar10.mat','cifar10Net');
 end
