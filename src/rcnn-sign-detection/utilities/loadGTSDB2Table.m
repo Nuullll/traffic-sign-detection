@@ -94,16 +94,16 @@ ind = sub2ind(size(categoriesROI), (1:nImages)', newCategories+1);
 categoriesROI(ind) = mat2cell(ROIs, ones(nImages,1), nCategories);
 
 % populate desired table
-prohibitorySignROI = categoriesROI(:,1);
-dangerSignROI = categoriesROI(:,2);
-mandatorySignROI = categoriesROI(:,3);
-otherSignROI = categoriesROI(:,4);
+prohibitorySign = categoriesROI(:,1);
+dangerSign = categoriesROI(:,2);
+mandatorySign = categoriesROI(:,3);
+otherSign = categoriesROI(:,4);
 
 gtsdbDataTable = table(imageFilename,...
-    prohibitorySignROI,...
-    dangerSignROI,...
-    mandatorySignROI,...
-    otherSignROI);
+    prohibitorySign,...
+    dangerSign,...
+    mandatorySign,...
+    otherSign);
 
 end
 
