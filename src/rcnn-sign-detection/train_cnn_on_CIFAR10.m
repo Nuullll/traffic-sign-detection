@@ -8,7 +8,7 @@ addpath('utilities');
 % CIFAR-10 contains 50,000 training images
 
 % add path if necessary
-%addpath(fullfile(matlabroot,'examples','vision','main'));
+addpath(fullfile(matlabroot,'examples','vision','main'));
 
 cifar10Dir = 'CIFAR-10';
 
