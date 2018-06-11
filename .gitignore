@@ -7,5 +7,6 @@ report/*
 
 # ignoring dataset
 **/CIFAR-10/
+**/Origin/
 
 
