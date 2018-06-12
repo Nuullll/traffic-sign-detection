@@ -22,7 +22,7 @@ end
 
 
 %% Generate training set and test set
-trainingSetRatio = 0.8;     % pick a part of whole dataset to train R-CNN
+trainingSetRatio = 0.9;     % pick a part of whole dataset to train R-CNN
 
 trainingIndByCategory = {};
 trainingInd = [];   % all slices for training
@@ -59,7 +59,7 @@ if doTraining
         'Verbose', true);
     
     rcnn = trainRCNNObjectDetector(trainingSet, cifar10Net, options, ...
-        'NegativeOverlapRange', [0 0.3], 'PositiveOverlapRange', [0.7 1]);
+        'NegativeOverlapRange', [0 0.1], 'PositiveOverlapRange', [0.8 1]);
     
     save('rcnn-gtsdb.mat', 'rcnn');
 else

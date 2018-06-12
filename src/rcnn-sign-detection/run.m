@@ -16,5 +16,11 @@
 % and the time of the training process.
 
 
-% Train CNN on CIFAR-10
+%% Train CNN on CIFAR-10
 train_cnn_on_CIFAR10;
+
+%% Train R-CNN on GTSDB
+train_rcnn_on_GTSDB;
+
+%% Validate R-CNN on GTSDB evaluation set
+evaluate_rcnn;
