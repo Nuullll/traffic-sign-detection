@@ -9,9 +9,12 @@ I = imread(testSet.imageFilename{pick});
 % detect signs
 [bboxes, scores, labels] = detect(rcnn, I, 'MiniBatchSize', 128);
 
+scoreThreshold = 0.9;
 outputImage = I;
+displayList = find(scores >= scoreThreshold);
 % display detection results
-for i = 1:length(scores)
+for k = 1:length(displayList)
+    i = displayList(k);
     score = scores(i);
     label = labels(i);
     bbox = bboxes(i, :);
