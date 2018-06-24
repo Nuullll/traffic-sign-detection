@@ -4,7 +4,7 @@
 report/*
 
 !report/*.pdf
-!report/figures/*
+!report/figures/
 
 # ignoring dataset
 **/CIFAR-10/
