@@ -1,10 +1,17 @@
-function [N, TPs, TPTotal, FPs, FPTotal] = pcaKnnModel(normSize, energyThreshold, K)
+function [N, TPs, TPTotal, FPs, FPTotal] = pcaKnnModel(normSize, energyThreshold, K, distanceThreshold, doOpenTest)
 % Run pca + knn model once
 
 %% Load data
 dataDir = '../../../dataset/data';
 
 [trainImages, trainLabels, testImages, testLabels] = loadData(dataDir, normSize);
+if doOpenTest
+    % open test
+    [negativeImages, negativeLabels] = loadNegative(dataDir, normSize);
+    nNegative = length(negativeLabels);
+    testImages(:,:,:,end+1:end+nNegative) = negativeImages;
+    testLabels(end+1:end+nNegative) = negativeLabels;
+end
 
 
 %% Preprocessing
@@ -19,7 +26,7 @@ testScore = (testFeatures - trainMu) * coeff;
 
 
 %% KNN
-predictedLabels = knnTest(trainScore, trainLabels, testScore, K);
+predictedLabels = knnTest(trainScore, trainLabels, testScore, K, distanceThreshold);
 
 
 %% Result analysis

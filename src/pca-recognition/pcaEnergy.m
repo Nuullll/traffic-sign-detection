@@ -11,9 +11,12 @@ function [coeff, score, mu] = pcaEnergy(data, threshold)
 % find threshold
 c = sum(latent);
 energy = cumsum(latent/c);
-nComponents = find(energy >= threshold, 1, 'first');
 
-coeff = coeff(:, 1:nComponents);
-score = score(:, 1:nComponents);
+if threshold < 1
+    nComponents = find(energy >= threshold, 1, 'first');
+    coeff = coeff(:, 1:nComponents);
+    score = score(:, 1:nComponents);
+end
+
 end
 
