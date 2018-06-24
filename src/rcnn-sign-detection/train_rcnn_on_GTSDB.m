@@ -1,7 +1,7 @@
 % Fine-tune the pretrained CNN (on CIFAR-10) for traffic sign detection
 
 %% Load GTSDB dataset (900 images with ROI labels)
-gtsdbDir = fullfile(pwd, 'Origin\');
+gtsdbDir = fullfile(pwd, 'Origin');
 gtsdbData = loadGTSDB2Table(gtsdbDir);
 nDataset = size(gtsdbData, 1);  % =1213 (some images may contain several ROI labels)
 
