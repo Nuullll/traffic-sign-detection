@@ -32,7 +32,11 @@ predictedLabels = knnTest(trainScore, trainLabels, testScore, K, distanceThresho
 %% Result analysis
 N = validate(testLabels, predictedLabels);
 
-[TPs, TPTotal, FPs, FPTotal] = positiveMetrics(N);
+if doOpenTest
+    [TPs, TPTotal, FPs, FPTotal] = openTestPositiveMetrics(N);
+else
+    [TPs, TPTotal, FPs, FPTotal] = positiveMetrics(N);
+end
 
 
 end
