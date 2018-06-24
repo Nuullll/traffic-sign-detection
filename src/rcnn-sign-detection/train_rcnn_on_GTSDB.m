@@ -46,7 +46,7 @@ testSet = gtsdbData(testInd, :);
 
 
 %% Train R-CNN Traffic Sign Detector
-doTraining = true;
+doTraining = false;
 
 if doTraining
     options = trainingOptions('sgdm', ...

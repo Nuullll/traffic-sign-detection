@@ -1,4 +1,4 @@
-function [N, TPs, TPTotal, FPs, FPTotal] = hogSvmModel(normSize, threshold, doOpenTest)
+function [N, TPs, TPTotal, FPs, FPTotal] = hogSvmModel(normSize, threshold, doOpenTest, trainRatio)
 % Run HOG+SVM model once
 
 %% Load data
@@ -12,6 +12,11 @@ if doOpenTest
     testImages(:,:,:,end+1:end+nNegative) = negativeImages;
     testLabels(end+1:end+nNegative) = negativeLabels;
 end
+
+% load source %%%%%%%%%%
+sourceDir = '../../../dataset/source';
+[trainImages, trainLabels, testImages, testLabels] = loadSource(sourceDir, normSize, trainRatio);
+
 
 
 %% Extract features £¨HOG)

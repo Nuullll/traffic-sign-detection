@@ -4,9 +4,10 @@
 normSize = [32 32];
 doOpenTest = false;
 threshold = 0;
+trainRatio = 0.8;
 
 %% Run HOG+SVM model
-[N, TPs, TPTotal, FPs, FPTotal] = hogSvmModel(normSize, threshold, doOpenTest);
+[N, TPs, TPTotal, FPs, FPTotal] = hogSvmModel(normSize, threshold, doOpenTest, trainRatio);
 
 
 %% Plot P matrix

@@ -13,6 +13,11 @@ if doOpenTest
     testLabels(end+1:end+nNegative) = negativeLabels;
 end
 
+% load source %%%%%%%%%%
+sourceDir = '../../../dataset/source';
+trainRatio = 0.8;
+[trainImages, trainLabels, testImages, testLabels] = loadSource(sourceDir, normSize, trainRatio);
+
 
 %% Preprocessing
 trainFeatures = preprocess(trainImages);
