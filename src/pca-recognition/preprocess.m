@@ -11,7 +11,7 @@ features = zeros(nImages, nFeatures);
 % convert RGB to gray images
 for i = 1:nImages
     image = images(:,:,:,i);
-    grayImg = rgb2gray(image);
+    grayImg = double(rgb2gray(image));
     % gray intensity as feature
     features(i,:) = grayImg(:)';
 end

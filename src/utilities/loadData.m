@@ -28,7 +28,7 @@ for i = 1:nTrain
     trainImages(:,:,:,i) = image;
 end
 
-trainLabels = categorical(trainTable.Var2);
+trainLabels = categorical(cellfun(@str2double, trainTable.Var2));
 
 % load test images
 testImages = uint8(zeros([normSize, 3, nTest]));
@@ -39,7 +39,7 @@ for i = 1:nTest
     testImages(:,:,:,i) = image;
 end
 
-testLabels = categorical(testTable.Var2);
+testLabels = categorical(cellfun(@str2double, testTable.Var2));
 
 end
 
